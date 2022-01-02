@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const path = require('path');
+const cors = require('cors');
 
 
 const movie = require('./router/movie');
@@ -21,11 +22,12 @@ const connection = mongoose.connect(DATABASE).then(() => console.log('Connected 
 
 
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
-    next();
-});
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+//     next();
+// });
+app.use(cors());
 
 app.use(express.static('static'));
 
