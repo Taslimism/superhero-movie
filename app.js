@@ -18,7 +18,7 @@ const connection = mongoose.connect(DATABASE).then(() => console.log('Connected 
     console.log(err);
 });
 
-app.use(express.static(path.join('public')));
+app.use(express.static('static'));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
