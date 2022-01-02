@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
+const path = require('path');
 
 const movie = require('./router/movie');
 const user = require('./router/user')
@@ -16,6 +17,8 @@ const DATABASE = DB.replace('<COLLECTION>', 'moviedb-test');
 const connection = mongoose.connect(DATABASE).then(() => console.log('Connected to Database')).catch((err) => {
     console.log(err);
 });
+
+app.use(express.static(path.join('public')));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
