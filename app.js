@@ -20,15 +20,16 @@ const connection = mongoose.connect(DATABASE).then(() => console.log('Connected 
 });
 
 app.use(express.static('static'));
-
+// app.use(express.static(path.join('static')))
 app.use((req, res, next) => {
     res.sendFile(path.resolve('static', 'index.html'));
 })
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
-//     next();
-// });
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Authorization");
+    next();
+});
 
 app.use(express.json());
 
